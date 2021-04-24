@@ -11,7 +11,7 @@ print(f'My favorite movies are: {my_favorite_movies}')
 
 #Write a Python program to display the first and last colors from the following list.
 color_list = ["Red","Green","White" ,"Black"]
-first_and_last_colors = (f'{color_list[0]} and { color_list[-1]}')
+first_and_last_colors = f'{color_list[0]} and { color_list[-1]}'
 print('The first and last colors from the color_list are:', first_and_last_colors)
 
 #Write a Python script to add a key to a dictionary
@@ -25,7 +25,7 @@ def body_mass_index_calculator():
     weight = float(input('Enter your weight (kg): '))
     height = float(input(f'Enter your height ({"m2".translate(superscript)}): '))
     body_mass_index = weight / height ** 2
-    return  (f'your body mass index is: {round(body_mass_index, 2)}')
+    return  f'your body mass index is: {round(body_mass_index, 2)}'
 print(body_mass_index_calculator())
 
 #Additional Exercises:
@@ -45,10 +45,8 @@ sample_tuple = ('tuple', 50, 1.4, True)
 print(sample_tuple)
 
 #Create a list of 5 city names and convert it into tuples.
-def convert_to_tuples(list):
-    return tuple(list)
 sample_list = ['Dubai','Paris',8,9,10]
-print(convert_to_tuples(sample_list))
+print(tuple(sample_list))
 
 #Remove duplicated from the list and store the values in the same list:
 
@@ -67,8 +65,8 @@ def odd_index_remover():
     string_with_removed_index= ''
 
     for i in range(len(given_string)):
-        if(i % 2 == 0):
-           string_with_removed_index= (f'{string_with_removed_index}{given_string[i]}')
+        if i % 2 == 0:
+           string_with_removed_index += given_string[i]
 
     print(f'Given string:- {given_string}')
     print(f'Sting with removed indes:- {string_with_removed_index}')
