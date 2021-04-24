@@ -26,7 +26,7 @@ def body_mass_index_calculator():
     height = float(input(f'Enter your height ({"m2".translate(superscript)}): '))
     body_mass_index = weight / height ** 2
     return  f'your body mass index is: {round(body_mass_index, 2)}'
-print(body_mass_index_calculator())
+#print(body_mass_index_calculator())
 
 #Additional Exercises:
 #Guess a number game - between 1 to 9.
@@ -38,12 +38,11 @@ def guess_number_game():
         guess_number = int(input('Enter your number guess between 1 to 9 : '))
     print('Well guessed !')
 
-guess_number_game()
+#guess_number_game()
 
 #Create a tuple with different data types
 sample_tuple = ('tuple', 50, 1.4, True)
 print(sample_tuple)
-
 #Create a list of 5 city names and convert it into tuples.
 sample_list = ['Dubai','Paris',8,9,10]
 print(tuple(sample_list))
@@ -64,9 +63,9 @@ def odd_index_remover():
     given_string= str(input('Please enter your string: '))
     string_with_removed_index= ''
 
-    for i in range(len(given_string)):
-        if i % 2 == 0:
-           string_with_removed_index += given_string[i]
+    for count, value in enumerate(given_string):
+        if count % 2 == 0:
+           string_with_removed_index += value
 
     print(f'Given string:- {given_string}')
     print(f'Sting with removed indes:- {string_with_removed_index}')
