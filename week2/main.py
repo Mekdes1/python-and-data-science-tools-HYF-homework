@@ -45,15 +45,10 @@ class JetInventory:
     def my_first_inventory(self):
         print(f'1. {self.name} {self.country}')
 
-    def my_second_inventory(self):
-        print(f'2. {self.name} {self.country}')
-
 
 my_first_inventory_is = JetInventory("Mekdes", "Denmark")
 my_first_inventory_is.my_first_inventory()
 
-my_second_inventory_is = JetInventory("Mekdes", "Addis")
-my_second_inventory_is.my_second_inventory()
 
 # Write a Python script to check whether a given key already exists in a dictionary.
 sample_dictionary = {'name': 'Mek', 'Country': 'Ethiopia', 'City': 'Addis', 'age': 25}
