@@ -15,89 +15,44 @@ import pandas as pd
 df = pd.read_csv('responses.csv', delimiter = ",") 
 
 
-# In[2]:
+# In[13]:
 
 
-df['min'] = pd.to_numeric(df['min'], errors = 'coerce') # change min from string to numeric
-df.loc[df['sec'] > 60,'sec'] = np.nan
-df.loc[~df['exp'].isin(['Yes','No']),'exp'] = np.nan
-df.loc[~df['cor'].isin(['Yes','No']),'cor'] = np.nan
+df # read data
+
+#dentify nonsensical values and change the values
+df2=df.drop(['minSekRaw'], axis = 1)
+df2['min'] = pd.to_numeric(df2['min'], errors = 'coerce') # change min from string to numeric
+df2.loc[df2['sec'] > 60,'sec'] = np.nan
+df2.loc[~df2['exp'].isin(['Yes','No']),'exp'] = np.nan  # change to nan if value is not correct
+df2.loc[~df2['cor'].isin(['Yes','No']),'cor'] = np.nan
+df2['time'] = df2['min']*60 + df2.sec # make a time variable
 
 
 #summerize 
 
-df.shape # size of data (number of (rows,columns) - recall, Python is zero-indexed)
+df2.shape # size of data (number of (rows,columns) - recall, Python is zero-indexed)
+df2.describe(include='all')  
+df2.describe() # numerical overview of each variable, by default only numeric types
 
-df.describe() # numerical overview of each variable, by default only numeric types
-
-
-# In[182]:
-
-
+#plot data
 import matplotlib.pyplot as plt
 get_ipython().run_line_magic('matplotlib', 'inline')
 # numeric data
-df.plot(x = 'Unnamed: 0', y = 'diff', kind = 'scatter') # scatter plot 
-df.plot(x = 'hour', y = 'sec', kind = 'scatter')
-df.plot(y = 'min', kind = 'density') # density plot
+df2.plot(x = 'Unnamed: 0', y = 'diff', kind = 'scatter') # scatter plot 
+df2.plot(x = 'hour', y = 'sec', kind = 'scatter')
+df2.plot(y = 'min', kind = 'density') # density plot
+df2['type'].value_counts().plot(kind='bar')
 
 
-# In[3]:
-
-
-
-# categorical data (a visualization of the frequence table from before)
-df['type'].value_counts().plot(kind='bar')
-
-
-# In[5]:
-
-
-df.describe(include = 'all')
-
-
-# In[4]:
-
-
-col = df.loc[: , "sec":"min"]
-df['secMean'] = col.mean(axis=1)
-df
-
-
-# In[ ]:
-
-
-df.dropna()
-
-
-# In[22]:
-
-
-
-
-
-# In[7]:
-
-
-
-
-
-# In[21]:
-
-
-
-
-
-# In[18]:
-
-
-
-
-
-# In[ ]:
-
-
-
+#calculate mean time
+GreekTime = df2[df2['type'] == 'Greek'].time.mean()
+LatinTime = df2[df2['type'] == 'Latin'].time.mean()
+print('GreekTime', GreekTime)
+print('LatinTime',LatinTime)
+if GreekTime > LatinTime:
+   print('The players were faster solving the Latin words')
+print('The Players were faster solving the Geek words')
 
 
 # In[ ]:
